@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="calculator.js" defer></script>
+    <style>
+        #output {
+            font-family: monospace;
+            padding: 1rem;
+            border: 1px solid lightgray;
+        }
+    </style>
+</head>
+<body>
+    <div id="keys-container">
+        <div id="display">&nbsp;</div>
+        <div class="button clear" data-key="clear">AC</div>
+        <div class="button divide" data-key="/">/</div>
+        <div class="button seven" data-key=7>7</div>
+        <div class="button eight" data-key=8>8</div>
+        <div class="button nine" data-key=9>9</div>
+        <div class="button multiply" data-key="*">X</div>
+        <div class="button four" data-key=4>4</div>
+        <div class="button five" data-key=5>5</div>
+        <div class="button six" data-key=6>6</div>
+        <div class="button subtract" data-key="-">-</div>
+        <div class="button one" data-key=1>1</div>
+        <div class="button two" data-key=2>2</div>
+        <div class="button three" data-key=3>3</div>
+        <div class="button add" data-key="+">+</div>
+        <div class="button zero" data-key=0>0</div>
+        <div class="button dot" data-key=".">.</div>
+        <div class="button equals" data-key="=">=</div>
+    </div>
+    <div id="output"></div>
+</body>
+</html>
