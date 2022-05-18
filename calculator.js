@@ -16,7 +16,7 @@ let operator = "",
     total = 0,
     lastNumber = "",
     lastKey = "";
-"digit", "operator", "equals";
+"digit", "operator", "equals", "clear";
 const keys = Array.from(document.querySelectorAll("#keys-container .button"));
 const display = document.querySelector("#display");
 const tempOutput = document.querySelector("#output");
@@ -77,34 +77,39 @@ const performOperation = (num1, oper, num2) => {
 };
 
 const handleKey = (key) => {
-    if (!isNaN(Number(key))) {
-        // Convert number string to number
-        key = Number(key);
-    }
+    // if (!isNaN(Number(key))) {
+    //     // Convert number string to number
+    //     key = Number(key);
+    // }
 
     console.log("handleKey(" + typeof key + ") ", key);
 
-    if (typeof key === "number" || key === ".") {
-        // Number
+    if ( !isNaN(Number(key)) || key === ".") {
+        // Digit or .
         if (operator === "") total = 0;
         lastNumber += key.toString();
         print(lastNumber);
     } else if (key !== "=" && key !== "clear") {
-        // Operator
+        // Operator (+-*/)
         if (operator === "") {
-            operator = key;
+            /*
+            no operator currently stored
+            so this is an operation following 
+            the last number in anticipation of another number.
+            */
             total = total === 0 ? lastNumber : total;
             lastNumber = "";
         } else {
-            // operate
+            // there is an operator currently stored
             if (lastKey === "digit")
+            // only operate if a digit was selected last
                 total = performOperation(total, operator, lastNumber);
-            lastNumber = "";
-            operator = key;
         }
+        // change operation
+        operator = key;
         print(total);
     } else if (key === "=") {
-        // =, operate
+        // =
         total = performOperation(total, operator, lastNumber);
         print(total);
     } else if (key === "clear") {
@@ -115,18 +120,7 @@ const handleKey = (key) => {
     }
 
     lastKey =
-        typeof key === "number" ? "digit" : key === "=" ? "equals" : "operator";
+    !isNaN(Number(key)) || key === "." ? "digit" : key === "=" ? "equals" : key === "clear" ? "clear" : "operator";
 
     tempOutput.innerHTML = `lastKey: ${lastKey}(${key})<br />total: ${total}(${typeof total})<br />operator: ${operator}<br/>lastNumber:  ${lastNumber}`;
 };
-// console.log("total ", total);
-// handleKey(5);
-// handleKey(".");
-// handleKey(5);
-// // handleKey("+");
-// // handleKey(5);
-// handleKey('*');
-// handleKey('-');
-// handleKey(3);
-// handleKey('=');
-// console.log("total: ", total);
