@@ -30,13 +30,12 @@ const print = (txt) => {
 };
 
 for (let key of keys) {
-    // console.log('key: ',key);
-    //  console.log(key.getAttribute('data-key'));
     key.addEventListener("click", (event) => {
         const key = event.currentTarget.getAttribute("data-key");
         handleKey(key);
     });
 }
+
 const performOperation = (num1, oper, num2) => {
     num1 = typeof num1 === "number" ? num1 : Number(num1);
     num2 = typeof num2 === "number" ? num2 : Number(num2);
@@ -72,7 +71,6 @@ const performOperation = (num1, oper, num2) => {
     }
     // reset operator
     operator = lastNumber = "";
-    console.log("operation: ", result);
     return result;
 };
 
@@ -122,5 +120,5 @@ const handleKey = (key) => {
     lastKey =
     !isNaN(Number(key)) || key === "." ? "digit" : key === "=" ? "equals" : key === "clear" ? "clear" : "operator";
 
-    tempOutput.innerHTML = `lastKey: ${lastKey}(${key})<br />total: ${total}(${typeof total})<br />operator: ${operator}<br/>lastNumber:  ${lastNumber}`;
+    // tempOutput.innerHTML = `lastKey: ${lastKey}(${key})<br />total: ${total}(${typeof total})<br />operator: ${operator}<br/>lastNumber:  ${lastNumber}`;
 };
