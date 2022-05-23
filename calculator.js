@@ -1,8 +1,8 @@
+
 /*
 Each keypress is somewhere in the sequence of First Number, Operation, Second Number.  
 After that sequence, when another operation key or equals key is pressed, 
-perform Operation on First Number and Second Number.  The result is Total.
-If the key just pressed is an Operation Key, store it in Operation.  Put Total in First Number.
+perform Operation on First Number and Second Number.  
 */
 
 /*
@@ -10,7 +10,7 @@ keep a total of all operations
 When a Key is pressed...
 if it is a # key, add the digit to lastNumber string
 if it is an operation key, store it in operation string
-if it is a number following 
+and move lastNumber to total.
 */
 let operator = "",
     total = 0,
@@ -19,7 +19,7 @@ let operator = "",
 "digit", "operator", "equals", "clear";
 const keys = Array.from(document.querySelectorAll("#keys-container .button"));
 const display = document.querySelector("#display");
-const tempOutput = document.querySelector("#output");
+// const tempOutput = document.querySelector("#output");
 
 const print = (txt) => {
     txt = txt.toString();
@@ -39,7 +39,7 @@ for (let key of keys) {
 const performOperation = (num1, oper, num2) => {
     num1 = typeof num1 === "number" ? num1 : Number(num1);
     num2 = typeof num2 === "number" ? num2 : Number(num2);
-    console.log(
+    /*console.log(
         "num1: ",
         typeof num1,
         num1,
@@ -48,7 +48,7 @@ const performOperation = (num1, oper, num2) => {
         num2,
         "operator: ",
         operator
-    );
+    );*/
     let result = 0;
     switch (oper) {
         case "":
@@ -74,16 +74,14 @@ const performOperation = (num1, oper, num2) => {
     return result;
 };
 
+/*
+    I had a hard time commenting handleKey() to explain just what it's doing.  I don't have a good bird's eye view of how the function works, which made me wonder if the function could be more streamlined.  There are a lot of conditionals, each resulting in specific steps.  It feels like a very reactionary function rather than well-planned.
+*/
 const handleKey = (key) => {
-    // if (!isNaN(Number(key))) {
-    //     // Convert number string to number
-    //     key = Number(key);
-    // }
-
-    console.log("handleKey(" + typeof key + ") ", key);
 
     if ( !isNaN(Number(key)) || key === ".") {
         // Digit or .
+        
         if (operator === "") total = 0;
         lastNumber += key.toString();
         print(lastNumber);
@@ -121,4 +119,14 @@ const handleKey = (key) => {
     !isNaN(Number(key)) || key === "." ? "digit" : key === "=" ? "equals" : key === "clear" ? "clear" : "operator";
 
     // tempOutput.innerHTML = `lastKey: ${lastKey}(${key})<br />total: ${total}(${typeof total})<br />operator: ${operator}<br/>lastNumber:  ${lastNumber}`;
+
 };
+
+// choose "theme"
+const themeToggle = document.getElementById('dark-light-toggle');
+themeToggle.addEventListener('click', (event) => {
+    // toggle light/dark theme
+    const keysContainer = document.getElementById('keys-container');
+    keysContainer.classList.toggle('dark');
+    themeToggle.innerHTML = keysContainer.classList.contains('dark') ? 'make light' : 'make dark';
+});
