@@ -161,3 +161,8 @@ footer #dark-light-toggle {
     cursor: pointer;
     user-select: none;
 }
+@media (max-width: 420px){
+    :root {
+        font-size: 3.5vw;
+    }
+}
