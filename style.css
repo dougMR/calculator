@@ -165,4 +165,13 @@ footer #dark-light-toggle {
     :root {
         font-size: 3.5vw;
     }
+    footer{
+        position: relative;
+        background: none;
+    }
+    footer span {
+        border: 1px solid grey;
+        padding: 0.2rem 0.5rem;
+        border-radius: 1rem;
+    }
 }
