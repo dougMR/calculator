@@ -71,6 +71,7 @@ const performOperation = (num1, oper, num2) => {
     }
     // reset operator
     operator = lastNumber = "";
+    // console.log(`${num1} ${oper} ${num2} = ${result}`);
     return result;
 };
 
