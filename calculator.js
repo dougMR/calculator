@@ -36,6 +36,29 @@ for (let key of keys) {
     });
 }
 
+//  v unsuccessful attempt at solving decimal imprecision
+// 
+// const getDecimalPlaces = (num) => {
+//     if (Number.isInteger(num)) {
+//         return 0;
+//     }
+//     const str = num.toString();
+//     return str.substring(str.indexOf(".") + 1).length;
+// };
+
+// const roundToDecimalPlace = (num, places) => {
+//     const multiplier = Math.pow(10, places);
+//     return Math.round(num * multiplier) / multiplier;
+// };
+
+// Solve decimal imprecision
+// Pedro Ladaria's solution
+function solveImprecision(number) {
+    console.log('toPrecision(12): ',number.toPrecision(12));
+    console.log(typeof number.toPrecision(12));
+    return (parseFloat(number.toPrecision(12)));
+}
+
 const performOperation = (num1, oper, num2) => {
     num1 = typeof num1 === "number" ? num1 : Number(num1);
     num2 = typeof num2 === "number" ? num2 : Number(num2);
@@ -71,7 +94,9 @@ const performOperation = (num1, oper, num2) => {
     }
     // reset operator
     operator = lastNumber = "";
-    // console.log(`${num1} ${oper} ${num2} = ${result}`);
+
+    // This compensates for computer's inprecision of decimals
+    result = solveImprecision(result);
     return result;
 };
 
